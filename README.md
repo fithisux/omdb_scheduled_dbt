@@ -1,6 +1,4 @@
-# OTE DBT AIRFLOW
-
-
+# SCHEDULE OMDB FETCH
 
 ## Getting started
 
@@ -13,10 +11,10 @@ c:\tools\astro_1.24.1_windows_amd64.exe dev restart
 
 There are three dags that normally are meant to run one after the other.
 
-The dataset fetcher DAG, aka **imdb_dataset_fetcher** that fetches the dataset to the local [imdbfiles](dbt/imdbfiles).
+The dataset fetcher DAG, aka **omdb_dataset_fetcher** that fetches the dataset to the local [imdbfiles](dbt/imdbfiles).
 The dataset ingestion DAG, aka **dataset_to_db** that ingest a subset of the dataset to the postgres started by astronomer 
 (see [here](dbt/imdb_dataset_article/profiles.yml) for connecting your dbeaver).
-The dbt modeller dag, aka **imdb_dataset_dag**  models the subset of the dataset and runs some model tests.
+The dbt modeller dag, aka **omdb_dataset_dag**  models the subset of the dataset and runs some model tests.
 
 Navigate to [Local Airflow UI](http:/localhost:8080) to run executions (username/password == admin/admin).
 

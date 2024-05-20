@@ -4,7 +4,7 @@ from typing import List
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from airflow.decorators import dag
-from day_four.operators.fs_ingestion_operator import MarkVersionOperator, TimeOriginOperator, ToDBIngestionOperator, create_schema_callable, create_schema_facade
+from day_four.operators.fs_ingestion_operator import MarkVersionOperator, TimeOriginOperator, ToDBIngestionOperator, create_schema_facade
 
 dag = DAG(
     "dataset_to_db",
@@ -12,7 +12,7 @@ dag = DAG(
     start_date=datetime(2021, 1, 1),
     catchup=False,
     schedule_interval="@daily",
-    tags=["imdb"],
+    tags=["omdb"],
 )
 
 def print_context(ds=None, **kwargs):

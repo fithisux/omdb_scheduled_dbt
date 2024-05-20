@@ -9,28 +9,11 @@ from pathlib import Path
 from cosmos import DbtDag, ProjectConfig, ProfileConfig, RenderConfig
 from cosmos.profiles import PostgresUserPasswordProfileMapping
 from day_four.include.constants import venv_execution_config
+from day_four.include.profiles import profile_config
 
 DEFAULT_DBT_ROOT_PATH = Path(__file__).parent / "dbt"
 DBT_ROOT_PATH = Path(os.getenv("DBT_ROOT_PATH", DEFAULT_DBT_ROOT_PATH))
 
-profile_config = ProfileConfig(
-    profile_name="default",
-    target_name="dev",
-    profile_mapping=PostgresUserPasswordProfileMapping(
-        conn_id="airflow_db",
-        profile_args={"schema": "public"},
-    ),
-)
-
-profile_config = ProfileConfig(
-    profile_name="omdbprofile",
-    target_name="dev",
-    #profiles_yml_filepath='/usr/local/airflow/dbt/omdb_dbt_project/profiles.yml'
-    profile_mapping=PostgresUserPasswordProfileMapping(
-        conn_id="aws_aa_db",
-        profile_args={'schema': 'dbt'}
-    ),
-)
 
 # [START local_example]
 basic_cosmos_dag = DbtDag(

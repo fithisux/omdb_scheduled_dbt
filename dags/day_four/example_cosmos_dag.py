@@ -6,13 +6,12 @@ import os
 from datetime import datetime
 from pathlib import Path
 
-from cosmos import DbtDag, ProjectConfig, ProfileConfig, RenderConfig
-from cosmos.profiles import PostgresUserPasswordProfileMapping
-from day_four.include.constants import venv_execution_config
+from cosmos import DbtDag, ExecutionConfig, ProjectConfig, RenderConfig, TestBehavior
 from day_four.include.profiles import profile_config
 
 DEFAULT_DBT_ROOT_PATH = Path(__file__).parent / "dbt"
 DBT_ROOT_PATH = Path(os.getenv("DBT_ROOT_PATH", DEFAULT_DBT_ROOT_PATH))
+DBT_EXECUTABLE = Path("/usr/local/airflow/dbt_venv/bin/dbt")
 
 
 # [START local_example]
@@ -22,8 +21,14 @@ basic_cosmos_dag = DbtDag(
         DBT_ROOT_PATH / "omdb_dbt_project",
     ),
     profile_config=profile_config,
-    execution_config=venv_execution_config,
-    render_config = RenderConfig(emit_datasets=False),
+    execution_config = ExecutionConfig(
+    dbt_executable_path=str(DBT_EXECUTABLE),
+    #invocation_mode=InvocationMode.DBT_RUNNER,
+    ),
+    render_config = RenderConfig(
+        emit_datasets=False, 
+        test_behavior=TestBehavior.AFTER_ALL,
+    ),
     operator_args={
         "install_deps": True,  # install any necessary dependencies before running any dbt command
         "full_refresh": True,  # used only in dbt commands that support this flag

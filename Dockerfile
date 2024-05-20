@@ -12,7 +12,6 @@ FROM quay.io/astronomer/astro-runtime:11.3.0
 # RUN python -m pip install astronomer-cosmos
 
 # install dbt into a virtual environment
-RUN python -m pip install --upgrade astronomer-cosmos
 RUN python -m pip install apache-airflow[virtualenv]
 RUN python -m pip install pandas
 RUN python -m venv dbt_venv && source dbt_venv/bin/activate && pip install --no-cache-dir dbt-core dbt-postgres==1.7.14 && deactivate

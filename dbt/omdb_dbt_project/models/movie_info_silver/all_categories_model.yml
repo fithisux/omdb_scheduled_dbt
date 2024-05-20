@@ -1,0 +1,25 @@
+
+version: 2
+
+models:
+  - name: all_categories_cleansed
+    description: "All categories"
+    columns:
+      - name: id
+        description: "alphanumeric unique identifier of the category"
+        tests:
+          - unique
+          - not_null
+      - name: root_id
+        description: "the category"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('category_names_with_types')
+              field: category_id
+      - name: parent_id
+        description: "the parent category"
+        tests:
+          - relationships:
+              to: ref('category_names_with_types')
+              field: category_id

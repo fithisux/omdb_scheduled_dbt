@@ -1,0 +1,18 @@
+
+version: 2
+
+models:
+  - name: all_movieseries_cleansed
+    description: "All movie series"
+    columns:
+      - name: id
+        description: "alphanumeric unique identifier of the movie series"
+        tests:
+          - not_null
+          - unique
+      - name: parent_id
+        description: "The movie series"
+      - name: name
+        description: "the name of the movie in english us"
+      - name: date
+        description: "I suspect the production date"

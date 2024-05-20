@@ -1,0 +1,14 @@
+
+version: 2
+
+models:
+  - name: all_characters_cleansed
+    description: "All categories"
+    columns:
+      - name: id
+        description: "alphanumeric unique identifier of the character"
+        tests:
+          - unique
+          - not_null
+      - name: name
+        description: "the name of the character"

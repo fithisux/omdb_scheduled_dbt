@@ -1,0 +1,23 @@
+
+version: 2
+
+models:
+  - name: all_movies_cleansed
+    description: "All movies"
+    columns:
+      - name: id
+        description: "alphanumeric unique identifier of the movie"
+        tests:
+          - not_null
+          - unique
+      - name: parent_id
+        description: "The movie series"
+        tests:
+           - not_null
+           - relationships:
+              to: ref('all_movieseries_with_types')
+              field: id
+      - name: name
+        description: "the name of the movie in english us"
+      - name: date
+        description: "I suspect the production date"

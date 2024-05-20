@@ -1,0 +1,38 @@
+
+version: 2
+
+sources:
+  - name: external_source
+    schema: omdbs
+    tables:
+      - name: all_casts
+      - name: all_categories
+      - name: all_characters
+      - name: all_episodes
+      - name: all_movie_aliases
+      - name: all_movie_aliases_iso
+      - name: all_movies
+      - name: all_movieseries
+      - name: all_people
+      - name: all_people_aliases
+      - name: all_seasons
+      - name: all_series
+      - name: all_votes
+      - name: category_names
+      - name: image_ids
+      - name: image_licenses
+      - name: job_names
+      - name: movie_abstracts_de
+      - name: movie_abstracts_en
+      - name: movie_abstracts_es
+      - name: movie_abstracts_fr
+      - name: movie_categories
+      - name: movie_content_updates
+      - name: movie_countries
+      - name: movie_details
+      - name: movie_keywords
+      - name: movie_languages
+      - name: movie_links
+      - name: movie_references
+      - name: people_links
+      - name: trailers

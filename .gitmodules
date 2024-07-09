@@ -1,0 +1,3 @@
+[submodule "dbt/omdb_manual_dataset"]
+	path = dbt/omdb_manual_dataset
+	url = https://github.com/fithisux/omdb_manual_dataset

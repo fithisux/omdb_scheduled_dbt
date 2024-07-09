@@ -18,7 +18,7 @@ DBT_EXECUTABLE = Path("/usr/local/airflow/dbt_venv/bin/dbt")
 basic_cosmos_dag = DbtDag(
     # dbt/cosmos-specific parameters
     project_config=ProjectConfig(
-        DBT_ROOT_PATH / "omdb_dbt_project",
+        DBT_ROOT_PATH / "omdb_manual_dataset/omdb_dbt_project",
     ),
     profile_config=profile_config,
     execution_config = ExecutionConfig(

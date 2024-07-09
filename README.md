@@ -1,12 +1,18 @@
 # SCHEDULE OMDB FETCH
 
 ## Getting started
+which has submodules, so you need additionally
+
+```
+git submodule init
+git submodule update
+```
 
 Just clone the repo and by use of the [Astronomer CLI](https://docs.astronomer.io/astro/cli/install-cli)
 you can run the project. In my Windows machine I just use:
 
 ```
-c:\tools\astro_1.26.0_windows_amd64.exe dev restart
+c:\tools\astro_1.27.1_windows_amd64.exe dev start
 ```
 
 There are three dags that normally are meant to run one after the other.

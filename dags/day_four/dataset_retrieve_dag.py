@@ -1,6 +1,7 @@
 from datetime import datetime
 from pprint import pprint
 from airflow import DAG
+from airflow.datasets import Dataset
 
 from airflow.operators.python import PythonOperator
 from airflow.decorators import dag
@@ -66,7 +67,7 @@ FILE_LIST = [
 run_this = PythonOperator(task_id="print_the_context", python_callable=print_context, dag=dag)
 time_origin = TimeOriginOperator(task_id="time_origin", dag=dag)
 start_this = StartIngestionOperator(task_id="start_ingestion", dag=dag)
-finish_this = FinishIngestionOperator(task_id="finish_ingestion", dag=dag)
+finish_this = FinishIngestionOperator(task_id="finish_ingestion", dag=dag, outlets=[Dataset("s3://dataset-bucket/example1.csv")])
 file_ingestion_tasks = [FileIngestionOperator(task_id=f"task_{data_file}", file_name=data_file, dag=dag) for data_file in FILE_LIST]
 
 run_this >> time_origin >> start_this

@@ -8,6 +8,7 @@ from pathlib import Path
 
 from cosmos import DbtDag, ExecutionConfig, ProjectConfig, RenderConfig, TestBehavior
 from day_four.include.profiles import profile_config
+from airflow.datasets import Dataset
 
 DEFAULT_DBT_ROOT_PATH = Path(__file__).parent / "dbt"
 DBT_ROOT_PATH = Path(os.getenv("DBT_ROOT_PATH", DEFAULT_DBT_ROOT_PATH))
@@ -34,7 +35,7 @@ basic_cosmos_dag = DbtDag(
         "full_refresh": True,  # used only in dbt commands that support this flag
     },
     # normal dag parameters
-    schedule_interval="@daily",
+    schedule=[Dataset("s3://dataset-bucket/example2.csv")],
     start_date=datetime(2023, 1, 1),
     catchup=False,
     dag_id="omdb_dataset_dag",

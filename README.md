@@ -1,5 +1,7 @@
 # SCHEDULE OMDB FETCH
 
+There is [article](https://fithis2001.medium.com/ingesting-the-omdb-dataset-fcd9ca53a36a).
+
 ## Getting started
 which has submodules, so you need additionally
 

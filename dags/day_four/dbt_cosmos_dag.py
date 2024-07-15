@@ -14,8 +14,6 @@ DEFAULT_DBT_ROOT_PATH = Path(__file__).parent / "dbt"
 DBT_ROOT_PATH = Path(os.getenv("DBT_ROOT_PATH", DEFAULT_DBT_ROOT_PATH))
 DBT_EXECUTABLE = Path("/usr/local/airflow/dbt_venv/bin/dbt")
 
-
-# [START local_example]
 basic_cosmos_dag = DbtDag(
     # dbt/cosmos-specific parameters
     project_config=ProjectConfig(
@@ -38,8 +36,7 @@ basic_cosmos_dag = DbtDag(
     schedule=[Dataset("s3://dataset-bucket/example2.csv")],
     start_date=datetime(2023, 1, 1),
     catchup=False,
-    dag_id="omdb_dataset_dag",
+    dag_id="omdb_dbt_runner",
     tags=["omdb"],
     default_args={"retries": 2},
 )
-# [END local_example]

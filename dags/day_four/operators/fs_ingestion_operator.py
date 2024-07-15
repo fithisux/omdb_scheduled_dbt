@@ -11,7 +11,6 @@ from airflow.models import BaseOperator, Connection, Variable
 from airflow.models.taskinstance import Context
 from typing import List
 from sqlalchemy import create_engine
-import sqlalchemy
 import logging
 import io
 import bz2
@@ -165,25 +164,6 @@ class MarkVersionOperator(BaseOperator):
 
 
 # https://stackoverflow.com/questions/50927740/sqlalchemy-create-schema-if-not-exists
-class CreateSchemaOperator(BaseOperator):
-    def __init__(self, schema_name: str, *args, **kwargs):
-        self.schema_name = schema_name
-        super().__init__(*args, **kwargs)
-
-    def execute(self, context: Context):
-        connections: List[Connection] = BaseHook.get_connections("aws_aa_db")
-
-        as_uri = connections[0].get_uri()
-        as_uri = as_uri.replace("postgres://", "postgresql+psycopg2://")
-        logger.info(f"DB URI IS {as_uri}")
-        engine = create_engine(as_uri)
-
-        if engine.dialect.has_schema(engine, self.schema_name):
-            engine.execute(f"DROP SCHEMA {self.schema_name} CASCADE;")
-            
-        engine.execute(sqlalchemy.schema.CreateSchema(self.schema_name))
-
-
 def create_schema_callable(schema_name: str, db_airflow_connection: str):
     import sqlalchemy
 

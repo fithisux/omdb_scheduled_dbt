@@ -1,2 +1,7 @@
+container:
+    binary: podman
 project:
-  name: cosmos-demo
+    name: cosmos-demo
+webserver:
+    port: "8080"
+    host: localhost

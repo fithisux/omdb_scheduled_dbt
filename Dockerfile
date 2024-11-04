@@ -1,4 +1,4 @@
-FROM quay.io/astronomer/astro-runtime:11.6.0
+FROM quay.io/astronomer/astro-runtime:12.2.0
 
 # FROM apache/airflow:2.9.1
 # USER root
@@ -14,7 +14,7 @@ FROM quay.io/astronomer/astro-runtime:11.6.0
 # install dbt into a virtual environment
 RUN python -m pip install apache-airflow[virtualenv]
 RUN python -m pip install pandas
-RUN python -m venv dbt_venv && source dbt_venv/bin/activate && pip install --no-cache-dir dbt-core dbt-postgres==1.7.14 && deactivate
+RUN python -m venv dbt_venv && source dbt_venv/bin/activate && pip install --no-cache-dir dbt-core dbt-postgres && deactivate
 
 # set a connection to the airflow metadata db to use for testing
 ENV AIRFLOW_CONN_AIRFLOW_METADATA_DB=postgresql+psycopg2://postgres:postgres@postgres:5432/postgres
